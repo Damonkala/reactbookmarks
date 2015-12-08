@@ -6,6 +6,7 @@ class Form extends React.Component {
     super(props);
     this.state = { titleValue: '', urlValue: '' };
   }
+
   changeInput(inputName, e) {
     this.setState({ [inputName]: e.target.value });
   }
@@ -22,9 +23,9 @@ class Form extends React.Component {
     return (
       <div className="form">
         <form onSubmit={this.addBookmark.bind(this)}>
-        <input placeholder="Title" value={titleValue}
+        <input required placeholder="Title" value={titleValue}
                onChange={this.changeInput.bind(this, "titleValue")} />
-        <input placeholder="Url" value={urlValue}
+             <input required placeholder="Url" value={urlValue}
                onChange={this.changeInput.bind(this, "urlValue")} />
         <button type="submit">Add Link</button>
         </form>

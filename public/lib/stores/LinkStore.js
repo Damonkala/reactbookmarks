@@ -13,18 +13,20 @@ class LinkStore extends EventEmitter {
       switch (action.actionType) {
         case ActionTypes.RECEIVE_LINKS:
           console.log("4. We received news about the new data", action);
-          // account for the new data;
           _links = action.links;
           this.emit("CHANGE");
           break;
         case ActionTypes.RECEIVE_ONE_LINK:
             console.log("We received news about the new link", action);
-            // account for the new data;
             _links.push(action.link);
             this.emit("CHANGE");
             break;
+        case ActionTypes.DESTROY_LINKS:
+            console.log("We want to remove a link", action)
+            destroy(action.id)
+            this.emit("CHANGE")
+            break;
         default:
-          // do nothing
       }
     })
   }
@@ -44,6 +46,9 @@ class LinkStore extends EventEmitter {
   }
   stopListening(callback) {
     this.removeListener("CHANGE", callback);
+  }
+  destroy(id){
+    delete _links[id];
   }
 }
 
