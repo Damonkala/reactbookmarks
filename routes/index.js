@@ -16,18 +16,22 @@ router.delete('/api/links/', function(req, res, next) {
    for(var i = 0; i <= links.length; i++){
      if(links[i].id == doomedLink){
        links.splice(i, 1)
-      console.log(i)
+       console.log(i)
+       res.json({ links: links });
+       return;
      } else {
-       console.log("safe", links[i].id)
+      //  res.json({ links: links });
      }
-
    }
    console.log(links)
-   res.json({ links: links });
-
-
 });
 
+router.put('/api/links', function(req, req, next){
+  // var updateLink = req.body.id;
+  // console.log(updateLink)
+  // console.log(req.body.id)
+  console.log(req.body.id)
+})
 router.post('/api/links', function(req, res, next) {
    var newLink = req.body;
    newLink.id = Date.now();

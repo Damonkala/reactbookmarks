@@ -26,6 +26,11 @@ class LinkStore extends EventEmitter {
             destroy(action.id)
             this.emit("CHANGE")
             break;
+        case ActionTypes.UPDATE_LINKS:
+            console.log("We want to update a link", action)
+            update(action.id)
+            this.emit("CHANGE")
+            break;
         default:
       }
     })
@@ -49,6 +54,9 @@ class LinkStore extends EventEmitter {
   }
   destroy(id){
     delete _links[id];
+  }
+  update(id, updates){
+    _links[id] = assign({}, _links[id], updates);
   }
 }
 

@@ -9,6 +9,9 @@ let LinkActions = {
   },
   removeBookmark(id) {
     API.removeBookmark(id)
+  },
+  favoriteBookmark(id) {
+    API.favoriteBookmark(id)
   }
 };
 
