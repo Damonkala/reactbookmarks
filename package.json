@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "setup": "npm i && jspm i",
-    "start": "node app.js"
+    "start": "node ./bin/www",
+    "postinstall": "jspm i"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
