@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm i && jspm i && node ./bin/www"
+    "start": "node ./bin/www",
+    "postinstall": "npm i && jspm i"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
