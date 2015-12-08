@@ -13,8 +13,7 @@ class Form extends React.Component {
   addBookmark(e) {
     e.preventDefault();
     let newBookmark = { title: this.state.titleValue,
-                        url: this.state.urlValue,
-                        faved: false};
+                        url: this.state.urlValue };
 
     LinkActions.saveBookmark(newBookmark);
     this.setState({titleValue: '', urlValue: ''});

@@ -1,4 +1,4 @@
-import {get, post, put} from "jquery";
+import {get, post, put, ajax} from "jquery";
 
 import ServerActions from "./actions/ServerActions";
 
@@ -12,7 +12,7 @@ let API = {
     get("/api/links").done(data => ServerActions.receiveLinks(data.links));
   },
   removeBookmark(deletedBookmark) {
-    $.ajax({
+    ajax({
       url: "/api/links",
       type: 'delete',
       data: {"id": deletedBookmark},
@@ -23,12 +23,15 @@ let API = {
   },
   favoriteBookmark(favedBookmark) {
     console.log(favedBookmark)
-    $.ajax({
-      url: "/api/links",
-      type: 'PUT',
-      data: {"id": favedBookmark}
+    ajax({
+      url: "/api/links/fave",
+      type: 'post',
+      data: {"id": favedBookmark},
+      success: function(data){
+        ServerActions.receiveLinks(data.links)
+      }
     })
   }
-};
+}
 
 export default API;

@@ -11,6 +11,26 @@ router.get('/api/links', function(req, res, next) {
    res.json({ links: links });
 });
 
+router.post('/api/links/fave', function(req, res, next){
+  var updateLink = req.body.id;
+  for(var i = 0; i <= links.length; i++){
+    if(links[i].id == updateLink){
+      if(links[i].fave === true){
+        links[i].fave = false;
+      } else if(links[i].fave === false || links[i].fave === undefined) {
+        links[i].fave = true;
+      }
+      console.log(links[i])
+      res.json({ links: links });
+      return;
+    }
+     //  res.json({ links: links });
+    }
+
+  // console.log(req.body.id)
+  // res.json({ links: links });
+
+})
 router.delete('/api/links/', function(req, res, next) {
    var doomedLink = req.body.id;
    for(var i = 0; i <= links.length; i++){
@@ -26,12 +46,6 @@ router.delete('/api/links/', function(req, res, next) {
    console.log(links)
 });
 
-router.put('/api/links', function(req, req, next){
-  // var updateLink = req.body.id;
-  // console.log(updateLink)
-  // console.log(req.body.id)
-  console.log(req.body.id)
-})
 router.post('/api/links', function(req, res, next) {
    var newLink = req.body;
    newLink.id = Date.now();
